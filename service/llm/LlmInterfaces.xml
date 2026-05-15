@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <services xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/service-definition-3.xsd">
-    <service name="generateChatResponse">
+    <service name="generateChatResponse" type="interface">
         <description>LLM Agnostic Chat Generation Interface</description>
         <in-parameters>
             <!-- A list of message maps, e.g., [{role: "user", content: "Hello"}] -->
