@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<services xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/service-definition-3.xsd">
+    <service name="generateChatResponse">
+        <description>LLM Agnostic Chat Generation Interface</description>
+        <in-parameters>
+            <!-- A list of message maps, e.g., [{role: "user", content: "Hello"}] -->
+            <parameter name="messages" type="List" required="true"/>
+            <parameter name="providerId" type="String"/>
+            <parameter name="modelName" type="String"/>
+            <parameter name="temperature" type="BigDecimal" default-value="0.7"/>
+        </in-parameters>
+        <out-parameters>
+            <parameter name="reply" type="String"/>
+            <parameter name="usage" type="Map"/>
+        </out-parameters>
+    </service>
+</services>
