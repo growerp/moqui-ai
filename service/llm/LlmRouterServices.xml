@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<services xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/service-definition-3.xsd">
+    <service name="routeChatResponse" authenticate="false">
+        <implements service="llm.LlmInterfaces.generateChatResponse"/>
+        <actions>
+            <if condition="!providerId">
+                <!-- Fallback default provider -->
+                <set field="providerId" value="LOCAL_OLLAMA"/>
+            </if>
+            
+            <entity-find-one entity-name="growerp.llm.LlmProvider" value-field="provider">
+                <field-map field-name="providerId" from="providerId"/>
+            </entity-find-one>
+            
+            <if condition="!provider">
+                <return error="true" message="LLM Provider not found for providerId: ${providerId}"/>
+            </if>
+
+            <if condition="!modelName &amp;&amp; provider.defaultModel">
+                <set field="modelName" from="provider.defaultModel"/>
+            </if>
+
+            <if condition="!provider.serviceName">
+                <return error="true" message="No serviceName configured for LLM Provider: ${providerId}"/>
+            </if>
+
+            <service-call name="${provider.serviceName}" in-map="context" out-map="resultMap"/>
+            
+            <set field="reply" from="resultMap.reply"/>
+            <set field="usage" from="resultMap.usage"/>
+        </actions>
+    </service>
+</services>

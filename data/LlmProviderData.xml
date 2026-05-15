@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-facade-xml type="seed">
+    <growerp.llm.LlmProvider providerId="LOCAL_OLLAMA" 
+                             description="Local Ollama Gemma4 Provider" 
+                             endpointUrl="http://localhost:11434/api/chat"
+                             defaultModel="gemma4"
+                             serviceName="llm.OllamaServices.generateLocal"/>
+</entity-facade-xml>
