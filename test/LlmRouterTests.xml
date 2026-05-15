@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test-suite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/test-suite-3.xsd">
+    <test name="LlmMockRoutingTest">
+        <service-call name="llm.LlmRouterServices.routeChatResponse" out-map="mockResult">
+            <field-map field-name="messages" from="[[role:'user', content:'Hello mock']]"/>
+            <field-map field-name="providerId" value="MOCK_PROVIDER"/>
+        </service-call>
+        <assert condition="mockResult.reply == 'This is a mock response from mock-model'"/>
+        <assert condition="mockResult.usage.totalTokens == 30"/>
+    </test>
+</test-suite>

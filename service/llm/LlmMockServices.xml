@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<services xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/service-definition-3.xsd">
+    <service name="generateMock" authenticate="false">
+        <implements service="llm.LlmInterfaces.generateChatResponse"/>
+        <actions>
+            <set field="reply" value="This is a mock response from ${modelName ?: 'unknown'}"/>
+            <set field="usage" from="[promptTokens:10, completionTokens:20, totalTokens:30]"/>
+        </actions>
+    </service>
+</services>

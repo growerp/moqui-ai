@@ -5,4 +5,8 @@
                              endpointUrl="http://localhost:11434/api/chat"
                              defaultModel="gemma4"
                              serviceName="llm.OllamaServices.generateLocal"/>
+    <growerp.llm.LlmProvider providerId="MOCK_PROVIDER" 
+                             description="Mock Provider for Testing" 
+                             defaultModel="mock-model"
+                             serviceName="llm.LlmMockServices.generateMock"/>
 </entity-facade-xml>
